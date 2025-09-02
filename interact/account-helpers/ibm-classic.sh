@@ -88,7 +88,7 @@ packer plugins install github.com/IBM/ibmcloud
 
 # Functions to handle IBM Cloud API keys and configurations
 function getUsernameAPIkey {
-    email=$(cat ~/.bluemix/config.json  | jq -r .IAMToken | cut -d ' ' -f 2 | jq -Rr 'split(".") | .[1] | @base64d | fromjson | .email)
+    email=$(cat ~/.bluemix/config.json  | jq -r .IAMToken | cut -d ' ' -f 2 | jq -Rr 'split(".") | .[1] | @base64d | fromjson | .email')
     username=$(ibmcloud sl user list | grep -i $email | tr -s ' ' | cut -d ' ' -f 2)
     accountnumber=$(ibmcloud sl user list | grep -i $email | tr -s ' ' | cut -d ' ' -f 1)
     token=$(ibmcloud sl user detail $accountnumber --keys  | grep APIKEY | tr -s ' ' | cut -d ' ' -f 2)
