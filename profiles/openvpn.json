@@ -2,18 +2,9 @@
 	"name":"openvpn",
 	"description":"OpenVPN Server",
 	"install": [
-		"mkdir -p /home/op/vpn",
-		"sudo apt-get update && sudo apt --fix-broken install -y",
-		"wget -O /home/op/vpn/openvpn.sh https://gist.githubusercontent.com/pry0cc/0a464e11dd15acc7b3e82fd4565f94ba/raw/64739cdad670f520dbb91ccfd44ab23c3abd6ca3/openvpn-install.sh",
-		"chmod +x /home/op/vpn/openvpn.sh",
-		"sudo ufw allow 443",
-		"sudo /home/op/vpn/openvpn.sh",
-        "sudo cp /root/client.ovpn /home/op/vpn/client.ovpn",
-        "sudo chown op:users /home/op/vpn/client.ovpn"
+		"wget -O /home/op/openvpn.sh https://raw.githubusercontent.com/colemanjp/openvpn-install/6936231d86f67f99e1777600ad06e052752447d5/openvpn-install.sh",
+		"chmod +x /home/op/openvpn.sh",
+		"sudo ufw allow 443"
 	],
-	"uninstall":[
-		"echo \"3\nY\" | sudo /home/op/vpn/openvpn.sh",
-		"rm -rf /home/op/vpn"
-	],
-    "notes":"Use the command 'axiom-vpn <instance>' to download and connect to the VPN server."
+    "notes":"Use the command 'axiom-ssh <instance>' and then 'sudo bash openvpn.sh' taking all defaults except port change to 443. Then download client.ovpn."
 }
